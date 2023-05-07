@@ -38,7 +38,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
 	}
 
-    //Override yazmak gerekli
+    //Override yazmak gerek
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
