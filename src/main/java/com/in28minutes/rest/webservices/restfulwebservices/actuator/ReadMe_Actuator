@@ -1,0 +1,17 @@
+
+add this in pom.xml: 	
+	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
+		
+how to reach : via Browser -> http://localhost:8080/actuator
+
+
+What/Why : It provides to monitor and manage your application in your production. Thus, there is no code.
+what to Monitor: 
+	- beans: Complete List of Spring beans in your Application.
+	- health: information about Application's health.
+	- metrics: Application metrics
+	- mappings: Details around Request Mappings
+	- and More

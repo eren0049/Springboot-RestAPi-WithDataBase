@@ -1,4 +1,4 @@
-package com.in28minutes.rest.webservices.restfulwebservices.user;
+package com.in28minutes.rest.webservices.restfulwebservices.h2console;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,18 +11,18 @@ import org.springframework.stereotype.Component;
  * This Class is pre Database using. There is a List of Users to Save, Delete,etc.
  */
 @Component
-public class UserDaoService {
+public class H2UserDaoService {
 	// Database > JPA or Hibernate 
 	// Static List > UserDaoService 
 	//	---------- Variables ----------	  //
 	private static Integer usersCount=0;
 	
-	private static final List<User> users = new ArrayList<>();
+	private static final List<H2User> users = new ArrayList<>();
 	
 	static {
-		users.add(new User(++usersCount,"Adam",LocalDate.now().minusYears(30)));
-		users.add(new User(++usersCount,"Eve",LocalDate.now().minusYears(25)));
-		users.add(new User(++usersCount,"Jim",LocalDate.now().minusYears(20)));
+		users.add(new H2User(++usersCount,"Adam",LocalDate.now().minusYears(30)));
+		users.add(new H2User(++usersCount,"Eve",LocalDate.now().minusYears(25)));
+		users.add(new H2User(++usersCount,"Jim",LocalDate.now().minusYears(20)));
 	}
 	
 	//	---------- Methods ----------	//
@@ -30,7 +30,7 @@ public class UserDaoService {
 	 * finds all User
 	 * @return
 	 */
-	public List<User> findAll(){
+	public List<H2User> findAll(){
 		return users;
 	}
 	
@@ -40,15 +40,15 @@ public class UserDaoService {
 	 * @param id
 	 * @return
 	 */
-	public User findOne(int id){
-		Predicate<? super User> predicate = user -> user.getId().equals(id);
+	public H2User findOne(int id){
+		Predicate<? super H2User> predicate = user -> user.getId().equals(id);
 		return users.stream().filter(predicate).findFirst().orElse(null);
 	}
 	
 	/*/
 	 * adds new User to List above.
 	 */
-	public User save(User user) {
+	public H2User save(H2User user) {
 		user.setId(++usersCount);
 		users.add(user);
 		return user;
@@ -59,7 +59,7 @@ public class UserDaoService {
 	 * @param id
 	 */
 	public void deleteByID(int id){
-		Predicate<? super User> predicate = user -> user.getId().equals(id);
+		Predicate<? super H2User> predicate = user -> user.getId().equals(id);
 		users.removeIf(predicate);
 	}
 }

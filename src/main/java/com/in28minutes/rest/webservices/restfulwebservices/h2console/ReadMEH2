@@ -1,0 +1,28 @@
+h2 Database
+
+Configuration: 
+	-in pom.xml
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>8.0.0.Final</version>
+		</dependency>
+	-in properties file : 
+		spring.h2.console.enabled=true
+		management.endpoints.web.exposure.include=*
+		spring.datasource.url=jdbc:h2:mem:testdb
+		spring.jpa.defer-datasource-initialization=true
+	- in UserClass: 
+		@Entity : for Class
+		@Id,@GeneratedValue : for Id (variable) 
+How to reach: 
+	- http://localhost:8080/h2-console
+		- JDBC URl : jdbc:h2:mem:testdb
+
+how to modify:
+	- create a file "data.sql" in resources file.
+		- write : insert into user_details(id,birth_date,name) values(10003,current_date(),'Mike');
+		
+	- go to h2-console in browser and click on user_details and then click run. u will see data that you wrote in sql file.	
+
+		

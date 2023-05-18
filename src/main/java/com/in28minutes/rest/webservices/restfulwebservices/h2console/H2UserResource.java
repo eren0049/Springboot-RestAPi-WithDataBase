@@ -1,4 +1,4 @@
-package com.in28minutes.rest.webservices.restfulwebservices.user;
+package com.in28minutes.rest.webservices.restfulwebservices.h2console;
 
 import java.net.URI;
 import java.util.List;
@@ -23,13 +23,13 @@ import jakarta.validation.Valid;
  * 
  */
 @RestController //It is an Annotation for REST API
-public class UserResource {
+public class H2UserResource {
 	
 	//	----- Variables -----	//
-	private final UserDaoService service;
+	private final H2UserDaoService service;
 
 	//	----- Methods -----	//
-	public UserResource(UserDaoService service) {
+	public H2UserResource(H2UserDaoService service) {
 		super();
 		this.service = service;
 	}
@@ -38,8 +38,8 @@ public class UserResource {
 	 * gets all Users to "http://localhost:8080/"
 	 * @return
 	 */
-	@GetMapping("/users")
-	public List<User> retrieveAllUsers() {
+	@GetMapping("/h2/users")
+	public List<H2User> retrieveAllUsers() {
 		return service.findAll();
 	}
 
@@ -48,9 +48,9 @@ public class UserResource {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/users/{id}") // in Parathases the Path is written
-	public User retrieveUser(@PathVariable int id) {
-		User user  = service.findOne(id);
+	@GetMapping("/h2/users/{id}") // in Parathases the Path is written
+	public H2User retrieveUser(@PathVariable int id) {
+		H2User user  = service.findOne(id);
 		if(user==null)
 			throw new UserNotFoundException("id:" + id);
 		return user;
@@ -62,9 +62,9 @@ public class UserResource {
 	 * @return
 	 */
 	//Post /users
-	@PostMapping("/users")
-	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-		User savedUser = service.save(user);
+	@PostMapping("/h2/users")
+	public ResponseEntity<H2User> createUser(@Valid @RequestBody H2User user) {
+		H2User savedUser = service.save(user);
 		URI location = ServletUriComponentsBuilder
 				.fromCurrentRequest()
 				.path("/{id}")
@@ -78,7 +78,7 @@ public class UserResource {
 	 * Deletes the User with given ID
 	 * @param id
 	 */
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/h2/users/{id}")
 	public void deleteUser(@PathVariable int id) {
 		service.deleteByID(id);
 	}
